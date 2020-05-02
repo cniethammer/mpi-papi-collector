@@ -31,20 +31,19 @@ int MPI_Init(int *argc, char ***argv) {
   strcpy(eventnames, eventnames_env);
 
   if (PAPI_library_init(PAPI_VER_CURRENT) != PAPI_VER_CURRENT) {
-    PAPI_perror("Failed initializing PAPI library.");
+    PAPI_perror("Error initializing PAPI library");
   }
   PAPI_CHECK(PAPI_thread_init(pthread_self) != PAPI_OK,
-             "Failed initializing PAPI thread support.");
+             "Error initializing PAPI thread support");
 
   /* adding events */
-  PAPI_CHECK(PAPI_create_eventset(&eventSet),
-             "Failed to create PAPI event set.");
+  PAPI_CHECK(PAPI_create_eventset(&eventSet), "Error to create PAPI event set");
 
   char *saveptr = NULL;
   char *eventName = strtok_r(eventnames, ",", &saveptr);
   while (eventName != NULL) {
     PAPI_CHECK(PAPI_add_named_event(eventSet, eventName),
-               "Failed adding PAPI event.");
+               "Error adding PAPI event");
     eventName = strtok_r(NULL, ",", &saveptr);
   }
   free(eventnames);
