@@ -14,8 +14,7 @@
   do {                                                                         \
     int retval = (PAPI_CMD);                                                   \
     if ((retval) != PAPI_OK) {                                                 \
-      fprintf(stderr, "Error: %s\n", MSG);                                     \
-      fprintf(stderr, "PAPI error %d: %s\n", retval, PAPI_strerror(retval));   \
+      PAPI_perror(MSG);                                                        \
     }                                                                          \
   } while (0);
 #else /* NDEBUG */
