@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2020  High Performance Computing Center Stuttgart,
+ * Copyright (c) 2019-2023  High Performance Computing Center Stuttgart,
  *                          University of Stuttgart.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,7 @@ int MPI_Init(int *argc, char ***argv) {
   int ret = MPI_SUCCESS;
 
   char *eventnames_env = getenv("MPI_PAPI_COLLECTOR_EVENTS");
-  char *eventnames = (char *)malloc(strlen(eventnames_env) + 1);
-  strcpy(eventnames, eventnames_env);
+  char *eventnames = strdup(eventnames_env);
 
   if (PAPI_library_init(PAPI_VER_CURRENT) != PAPI_VER_CURRENT) {
     PAPI_perror("Error initializing PAPI library");

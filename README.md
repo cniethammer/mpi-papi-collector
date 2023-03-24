@@ -32,7 +32,7 @@ separated via comma.
 
 
 ## Legal Info and Contact
-Copyright (c) 2019      HLRS, University of Stuttgart.
+Copyright (c) 2019-2023 HLRS, University of Stuttgart.
  This software is published under the terms of the BSD license.
 
 Contact: Christoph Niethammer <niethammer@hlrs.de>
